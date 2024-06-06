@@ -32,7 +32,7 @@
     </tr>
     </thead>
     <tbody id="companyTableBody">
-    <!-- Data will be inserted here dynamically -->
+
     </tbody>
 </table>
 
@@ -44,6 +44,7 @@
                 throw new Error('Network response was not ok ' + response.statusText);
             }
             const data = await response.json();
+            console.log('Fetched data:', data); // Log the fetched data
             displayData(data);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -55,6 +56,7 @@
         tableBody.innerHTML = ''; // Clear existing data
 
         companies.forEach(company => {
+            console.log('Processing company:', company); // Log each company object
             const row = document.createElement('tr');
 
             const idCell = document.createElement('td');
@@ -66,23 +68,23 @@
             row.appendChild(innCell);
 
             const statusCell = document.createElement('td');
-            statusCell.textContent = company.status?.statusName || 'N/A'; // Check if "status" is defined
+            statusCell.textContent = company.status ? company.status.statusName : 'N/A';
             row.appendChild(statusCell);
 
             const statusRegistrationCell = document.createElement('td');
-            statusRegistrationCell.textContent = company.statusRegistration?.statusName || 'N/A'; // Check if "statusRegistration" is defined
+            statusRegistrationCell.textContent = company.statusRegistration ? company.statusRegistration.statusName : 'N/A';
             row.appendChild(statusRegistrationCell);
 
             const accountCell = document.createElement('td');
-            accountCell.textContent = company.account?.accountName || 'N/A'; // Check if "account" is defined
+            accountCell.textContent = company.account ? company.account.accountName : 'N/A';
             row.appendChild(accountCell);
 
             const kkmCell = document.createElement('td');
-            kkmCell.textContent = company.kkm;
+            kkmCell.textContent = company.kkm !== null ? company.kkm : 'N/A';
             row.appendChild(kkmCell);
 
             const isIpBeforeRegistrationCell = document.createElement('td');
-            isIpBeforeRegistrationCell.textContent = company.isipbeforeregistration || 'N/A'; // Note the case sensitivity here
+            isIpBeforeRegistrationCell.textContent = company.isipbeforeregistration !== null ? (company.isipbeforeregistration ? 'Yes' : 'No') : 'N/A';
             row.appendChild(isIpBeforeRegistrationCell);
 
             tableBody.appendChild(row);

@@ -22,4 +22,5 @@ public class Banks {
     private Status status;
 
     // Getters and Setters
+
 }

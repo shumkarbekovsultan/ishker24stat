@@ -1,9 +1,6 @@
 package com.example.ishker_24_statistic.models;
 
-
-
 import jakarta.persistence.*;
-
 
 @Entity
 @Table(name = "accounts")
@@ -36,5 +33,60 @@ public class Accounts {
     private Filials filial; // Изменение типа поля на Filial
 
     // Getters and Setters
-}
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Double getNumberofschet() {
+        return numberofschet;
+    }
+
+    public void setNumberofschet(Double numberofschet) {
+        this.numberofschet = numberofschet;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
+    public Banks getBank() {
+        return bank;
+    }
+
+    public void setBank(Banks bank) {
+        this.bank = bank;
+    }
+
+    public Filials getFilial() {
+        return filial;
+    }
+
+    public void setFilial(Filials filial) {
+        this.filial = filial;
+    }
+}

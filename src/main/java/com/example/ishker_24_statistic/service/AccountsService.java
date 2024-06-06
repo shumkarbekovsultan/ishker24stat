@@ -24,4 +24,9 @@ public class AccountsService {
     public Accounts saveAccount(Accounts account) {
         return accountsRepository.save(account);
     }
+
+
+    public List<Accounts> getAllAccountsWithCurrencyAndBankAndFilial() {
+        return accountsRepository.findAllWithCurrencyAndBankAndFilial();
+    }
 }
