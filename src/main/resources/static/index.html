@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Company Statistics</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+<h1>Company Statistics</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>INN</th>
+        <th>Status</th>
+        <th>Status Registration</th>
+        <th>Account</th>
+        <th>KKM</th>
+        <th>Is IP Before Registration</th>
+    </tr>
+    </thead>
+    <tbody id="companyTableBody">
+    <!-- Data will be inserted here dynamically -->
+    </tbody>
+</table>
+
+<script>
+    async function fetchData() {
+        try {
+            const response = await fetch('http://localhost:8000/companies'); // Assuming your endpoint is /companies
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            const data = await response.json();
+            displayData(data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    function displayData(companies) {
+        const tableBody = document.getElementById('companyTableBody');
+        tableBody.innerHTML = ''; // Clear existing data
+
+        companies.forEach(company => {
+            const row = document.createElement('tr');
+
+            const idCell = document.createElement('td');
+            idCell.textContent = company.id;
+            row.appendChild(idCell);
+
+            const innCell = document.createElement('td');
+            innCell.textContent = company.inn;
+            row.appendChild(innCell);
+
+            const statusCell = document.createElement('td');
+            statusCell.textContent = company.status?.statusName || 'N/A'; // Check if "status" is defined
+            row.appendChild(statusCell);
+
+            const statusRegistrationCell = document.createElement('td');
+            statusRegistrationCell.textContent = company.statusRegistration?.statusName || 'N/A'; // Check if "statusRegistration" is defined
+            row.appendChild(statusRegistrationCell);
+
+            const accountCell = document.createElement('td');
+            accountCell.textContent = company.account?.accountName || 'N/A'; // Check if "account" is defined
+            row.appendChild(accountCell);
+
+            const kkmCell = document.createElement('td');
+            kkmCell.textContent = company.kkm;
+            row.appendChild(kkmCell);
+
+            const isIpBeforeRegistrationCell = document.createElement('td');
+            isIpBeforeRegistrationCell.textContent = company.isipbeforeregistration || 'N/A'; // Note the case sensitivity here
+            row.appendChild(isIpBeforeRegistrationCell);
+
+            tableBody.appendChild(row);
+        });
+    }
+
+    window.onload = fetchData;
+</script>
+</body>
+</html>
