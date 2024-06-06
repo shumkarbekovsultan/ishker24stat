@@ -28,5 +28,37 @@ public class UserActivity {
     private java.sql.Timestamp logouttimestamp;
 
     // Getters and Setters
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public java.sql.Timestamp getLogintimestamp() {
+        return logintimestamp;
+    }
+
+    public void setLogintimestamp(java.sql.Timestamp logintimestamp) {
+        this.logintimestamp = logintimestamp;
+    }
+
+    public java.sql.Timestamp getLogouttimestamp() {
+        return logouttimestamp;
+    }
+
+    public void setLogouttimestamp(java.sql.Timestamp logouttimestamp) {
+        this.logouttimestamp = logouttimestamp;
+    }
 }
 

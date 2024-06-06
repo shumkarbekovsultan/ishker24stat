@@ -22,4 +22,36 @@ public class Filials {
     private Status status;
 
     // Getters and Setters
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNameoffilials() {
+        return nameoffilials;
+    }
+
+    public void setNameoffilials(String nameoffilials) {
+        this.nameoffilials = nameoffilials;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }

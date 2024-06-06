@@ -28,4 +28,51 @@ public class Currency {
     private Double exchangerate;
 
     // Getters and Setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getNameofcurrency() {
+        return nameofcurrency;
+    }
+
+    public void setNameofcurrency(String nameofcurrency) {
+        this.nameofcurrency = nameofcurrency;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Double getExchangerate() {
+        return exchangerate;
+    }
+
+    public void setExchangerate(Double exchangerate) {
+        this.exchangerate = exchangerate;
+    }
 }

@@ -28,5 +28,45 @@ public class StatusOfTransactions {
     private java.sql.Date updatedat;
 
     // Getters and Setters
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNameofstatus() {
+        return nameofstatus;
+    }
+
+    public void setNameofstatus(String nameofstatus) {
+        this.nameofstatus = nameofstatus;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public java.sql.Date getCreatedat() {
+        return createdat;
+    }
+
+    public void setCreatedat(java.sql.Date createdat) {
+        this.createdat = createdat;
+    }
+
+    public java.sql.Date getUpdatedat() {
+        return updatedat;
+    }
+
+    public void setUpdatedat(java.sql.Date updatedat) {
+        this.updatedat = updatedat;
+    }
 }
 

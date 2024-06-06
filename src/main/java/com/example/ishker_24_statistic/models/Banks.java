@@ -22,5 +22,36 @@ public class Banks {
     private Status status;
 
     // Getters and Setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNameofbanks() {
+        return nameofbanks;
+    }
+
+    public void setNameofbanks(String nameofbanks) {
+        this.nameofbanks = nameofbanks;
+    }
+
+    public String getBic() {
+        return bic;
+    }
+
+    public void setBic(String bic) {
+        this.bic = bic;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
 }

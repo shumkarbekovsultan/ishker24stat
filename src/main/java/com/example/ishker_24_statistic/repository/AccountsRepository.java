@@ -8,7 +8,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+
 public interface AccountsRepository extends JpaRepository<Accounts, Integer> {
-    @Query("SELECT a FROM Accounts a JOIN FETCH a.currency JOIN FETCH a.bank JOIN FETCH a.filial")
-    List<Accounts> findAllWithCurrencyAndBankAndFilial();
+    @Query("SELECT a FROM Accounts a " +
+            "JOIN FETCH a.status " +
+            "JOIN FETCH a.currency " +
+            "JOIN FETCH a.bank " +
+            "JOIN FETCH a.filial")
+    List<Accounts> findAllWithDetails();
+
 }

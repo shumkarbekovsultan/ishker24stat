@@ -13,9 +13,7 @@ public class AccountsService {
     @Autowired
     private AccountsRepository accountsRepository;
 
-    public List<Accounts> getAllAccounts() {
-        return accountsRepository.findAll();
-    }
+
 
     public Accounts getAccountById(Integer id) {
         return accountsRepository.findById(id).orElse(null);
@@ -25,8 +23,7 @@ public class AccountsService {
         return accountsRepository.save(account);
     }
 
-
-    public List<Accounts> getAllAccountsWithCurrencyAndBankAndFilial() {
-        return accountsRepository.findAllWithCurrencyAndBankAndFilial();
+    public List<Accounts> getAllAccounts() {
+        return accountsRepository.findAllWithDetails();
     }
 }

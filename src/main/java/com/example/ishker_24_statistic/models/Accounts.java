@@ -16,21 +16,21 @@ public class Accounts {
     @Column
     private Double balance;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "status", referencedColumnName = "id")
     private Status status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "currency", referencedColumnName = "id")
     private Currency currency;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bankid", referencedColumnName = "id")
     private Banks bank;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "filialid", referencedColumnName = "id")
-    private Filials filial; // Изменение типа поля на Filial
+    private Filials filial;
 
     // Getters and Setters
 
