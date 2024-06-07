@@ -8,6 +8,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -34,8 +37,9 @@ public class Transactions {
 
     private double amount;
 
-    @Temporal(TemporalType.DATE)
-    private Date transactiondate;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime transactiondate;
 
     // Getters and Setters
     public Integer getId() {
@@ -86,11 +90,11 @@ public class Transactions {
         this.amount = amount;
     }
 
-    public Date getTransactionDate() {
+    public LocalDateTime getTransactionDate() {
         return transactiondate;
     }
 
-    public void setTransactionDate(Date transactiondate) {
+    public void setTransactionDate(DateTimeFormat LocalDateTime) {
         this.transactiondate = transactiondate;
     }
 }

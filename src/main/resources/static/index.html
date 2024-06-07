@@ -1,107 +1,57 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Company Statistics</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
+    <title>Report View</title>
+    <script>
+        async function fetchReport() {
+            const bankFilter = document.getElementById("bankFilter").value;
+            const filialFilter = document.getElementById("filialFilter").value;
+            const response = await fetch(`/report/view?bankFilter=${bankFilter}&filialFilter=${filialFilter}`);
+            const data = await response.json();
+
+            const tableBody = document.getElementById("reportTableBody");
+            tableBody.innerHTML = "";
+
+            data.forEach(report => {
+                const row = document.createElement("tr");
+
+                Object.values(report).forEach(value => {
+                    const cell = document.createElement("td");
+                    cell.textContent = value;
+                    row.appendChild(cell);
+                });
+
+                tableBody.appendChild(row);
+            });
         }
-        th, td {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-    </style>
+    </script>
 </head>
 <body>
-<h1>Company Statistics</h1>
-<table>
+<h1>Report View</h1>
+<label for="bankFilter">Bank Filter: </label>
+<input type="text" id="bankFilter" name="bankFilter">
+<label for="filialFilter">Filial Filter: </label>
+<input type="text" id="filialFilter" name="filialFilter">
+<button onclick="fetchReport()">Fetch Report</button>
+
+<table border="1">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>INN</th>
-        <th>Status</th>
-        <th>Status Registration</th>
-        <th>Account Number</th>
-        <th>Account Balance</th>
-
-        <th>KKM</th>
-        <th>Is IP Before Registration</th>
+        <th>Банк</th>
+        <th>Филиал</th>
+        <th>Приход</th>
+        <th>Расход</th>
+        <th>Сумма оборота</th>
+        <th>Все ИП</th>
+        <th>Успешно</th>
+        <th>Отклонено</th>
+        <th>В обработке</th>
+        <th>ГНС</th>
     </tr>
     </thead>
-    <tbody id="companyTableBody">
-
+    <tbody id="reportTableBody">
+    <!-- Report data will be inserted here -->
     </tbody>
 </table>
-
-<script>
-    async function fetchData() {
-        try {
-            const response = await fetch('http://localhost:8000/companies'); // Assuming your endpoint is /companies
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            const data = await response.json();
-            console.log('Fetched data:', data); // Log the fetched data
-            displayData(data);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    }
-
-    function displayData(companies) {
-        const tableBody = document.getElementById('companyTableBody');
-        tableBody.innerHTML = ''; // Clear existing data
-
-        companies.forEach(company => {
-            console.log('Processing company:', company); // Log each company object
-            const row = document.createElement('tr');
-
-            const idCell = document.createElement('td');
-            idCell.textContent = company.id;
-            row.appendChild(idCell);
-
-            const innCell = document.createElement('td');
-            innCell.textContent = company.inn;
-            row.appendChild(innCell);
-
-            const statusCell = document.createElement('td');
-            statusCell.textContent = company.status ? company.status.statusName : 'N/A';
-            row.appendChild(statusCell);
-
-            const statusRegistrationCell = document.createElement('td');
-            statusRegistrationCell.textContent = company.statusRegistration ? company.statusRegistration.statusName : 'N/A';
-            row.appendChild(statusRegistrationCell);
-
-            const accountCell = document.createElement('td');
-            accountCell.textContent = company.account ? company.account.numberofschet : 'N/A';
-            row.appendChild(accountCell);
-
-            const balanceCell = document.createElement('td');
-            balanceCell.textContent = company.account ? company.account.balance : 'N/A';
-            row.appendChild(balanceCell);
-
-
-
-            const kkmCell = document.createElement('td');
-            kkmCell.textContent = company.kkm !== null ? company.kkm : 'N/A';
-            row.appendChild(kkmCell);
-
-            const isIpBeforeRegistrationCell = document.createElement('td');
-            isIpBeforeRegistrationCell.textContent = company.isipbeforeregistration !== null ? (company.isipbeforeregistration ? 'Yes' : 'No') : 'N/A';
-            row.appendChild(isIpBeforeRegistrationCell);
-
-            tableBody.appendChild(row);
-        });
-    }
-
-    window.onload = fetchData;
-</script>
 </body>
 </html>
-
