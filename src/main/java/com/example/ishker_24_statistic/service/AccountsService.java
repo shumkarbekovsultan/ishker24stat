@@ -26,4 +26,12 @@ public class AccountsService {
     public List<Accounts> getAllAccounts() {
         return accountsRepository.findAllWithDetails();
     }
+
+    public List<Object[]> countAccountsByStatus() {
+        return accountsRepository.countAccountsByStatus();
+    }
+
+    public List<Object> filterAccountsByStatus(String statusName) {
+        return accountsRepository.filterAccountsByStatus(statusName);
+    }
 }

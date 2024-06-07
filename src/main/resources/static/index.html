@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +27,9 @@
         <th>INN</th>
         <th>Status</th>
         <th>Status Registration</th>
-        <th>Account</th>
+        <th>Account Number</th>
+        <th>Account Balance</th>
+
         <th>KKM</th>
         <th>Is IP Before Registration</th>
     </tr>
@@ -76,8 +79,14 @@
             row.appendChild(statusRegistrationCell);
 
             const accountCell = document.createElement('td');
-            accountCell.textContent = company.account ? company.account.accountName : 'N/A';
+            accountCell.textContent = company.account ? company.account.numberofschet : 'N/A';
             row.appendChild(accountCell);
+
+            const balanceCell = document.createElement('td');
+            balanceCell.textContent = company.account ? company.account.balance : 'N/A';
+            row.appendChild(balanceCell);
+
+
 
             const kkmCell = document.createElement('td');
             kkmCell.textContent = company.kkm !== null ? company.kkm : 'N/A';
@@ -95,3 +104,4 @@
 </script>
 </body>
 </html>
+

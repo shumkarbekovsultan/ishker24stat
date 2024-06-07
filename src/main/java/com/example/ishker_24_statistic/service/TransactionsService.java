@@ -24,4 +24,13 @@ public class TransactionsService {
     public Transactions saveTransaction(Transactions transaction) {
         return transactionsRepository.save(transaction);
     }
+
+//    public List<Transactions> filterTransactionsByStatus(Integer statusId) {
+//        return transactionsRepository.findByStatus_Id(statusId);
+//    }
+//
+//    public List<Transactions> filterTransactionsByType(Integer typeId) {
+//        return transactionsRepository.findByTransactionType_Id(typeId);
+//    }
+
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class CompanyService {
 
@@ -24,4 +25,33 @@ public class CompanyService {
     public Company saveCompany(Company company) {
         return companyRepository.save(company);
     }
+
+    public List<Company> filterByStatusName(String statusName) {
+        return companyRepository.filterByStatusName(statusName);
+    }
+
+
+
+        public List<Company> filterByIsIPBeforeRegistration(Boolean isIPBeforeRegistration) {
+            return companyRepository.filterByIsIPBeforeRegistration(isIPBeforeRegistration);
+        }
+
+
+    public List<Company> filterByStatusRegistrationName(String statusRegistrationName) {
+        return companyRepository.filterByStatusRegistrationName(statusRegistrationName);
+    }
+
+    public Double sumAllAccountBalances() {
+        return companyRepository.sumAllAccountBalances();
+    }
+
+
+
+//    public List<Company> filterByBank(String bankName) {
+//        return companyRepository.filterByBank(bankName);
+//    }
+//
+//    public List<Company> filterByBranch(String branchName) {
+//        return companyRepository.filterByBranch(branchName);
+//    }
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/transactions")
+@RequestMapping("/transactions")
 public class TransactionsController {
 
     @Autowired
@@ -29,4 +29,14 @@ public class TransactionsController {
     public Transactions saveTransaction(@RequestBody Transactions transaction) {
         return transactionsService.saveTransaction(transaction);
     }
+
+//    @GetMapping("/filterByStatus")
+//    public List<Transactions> filterTransactionsByStatus(@RequestParam("statusId") Integer statusId) {
+//        return transactionsService.filterTransactionsByStatus(statusId);
+//    }
+//
+//    @GetMapping("/filterByTransactionType")
+//    public List<Transactions> filterTransactionsByType(@RequestParam("typeId") Integer typeId) {
+//        return transactionsService.filterTransactionsByType(typeId);
+//    }
 }

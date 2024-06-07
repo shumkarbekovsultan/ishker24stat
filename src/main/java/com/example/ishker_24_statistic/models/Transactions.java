@@ -1,21 +1,16 @@
 package com.example.ishker_24_statistic.models;
 
-import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-
 import java.util.Date;
 
-
 @Entity
-@Table(name = "transactions")
 public class Transactions {
 
     @Id
@@ -23,13 +18,12 @@ public class Transactions {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "accountidFrom", referencedColumnName = "id")
+    @JoinColumn(name = "accountid_from", referencedColumnName = "id")
     private Accounts accountFrom;
 
     @ManyToOne
-    @JoinColumn(name = "accountidTo", referencedColumnName = "id")
+    @JoinColumn(name = "accountid_to", referencedColumnName = "id")
     private Accounts accountTo;
-
     @ManyToOne
     @JoinColumn(name = "transactiontype", referencedColumnName = "id")
     private TransactionType transactionType;
@@ -41,9 +35,7 @@ public class Transactions {
     private double amount;
 
     @Temporal(TemporalType.DATE)
-    private Date transactionDate;
-
-
+    private Date transactiondate;
 
     // Getters and Setters
     public Integer getId() {
@@ -95,10 +87,10 @@ public class Transactions {
     }
 
     public Date getTransactionDate() {
-        return transactionDate;
+        return transactiondate;
     }
 
-    public void setTransactionDate(Date transactionDate) {
-        this.transactionDate = transactionDate;
+    public void setTransactionDate(Date transactiondate) {
+        this.transactiondate = transactiondate;
     }
 }
