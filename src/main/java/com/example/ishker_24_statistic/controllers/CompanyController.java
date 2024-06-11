@@ -41,8 +41,8 @@ public class CompanyController {
 
     @GetMapping("/filterByStatus/count")
     public long countCompaniesByStatus(@RequestParam("statusName") String statusName) {
-        List<Company> filteredCompanies = companyService.filterByStatusName(statusName);
-        return filteredCompanies.size();}
+        return companyService.countByStatusName(statusName);
+    }
 
     @GetMapping("/filterByStatusRegistration")
     public List<Company> getCompaniesByStatusRegistration(@RequestParam("statusRegistrationName") String statusRegistrationName) {
@@ -51,8 +51,14 @@ public class CompanyController {
 
     @GetMapping("/filterByStatusRegistration/count")
     public long countCompaniesByStatusRegistration(@RequestParam("statusRegistrationName") String statusRegistrationName) {
-        List<Company> filteredCompanies = companyService.filterByStatusRegistrationName(statusRegistrationName);
-        return filteredCompanies.size();
+        return companyService.countByStatusRegistrationName(statusRegistrationName);
+    }
+
+    @GetMapping("/filter")
+    public List<Company> filterCompanies(
+            @RequestParam("statusName") String statusName,
+            @RequestParam("statusRegistrationName") String statusRegistrationName) {
+        return companyService.filterByStatusAndStatusRegistration(statusName, statusRegistrationName);
     }
 
 

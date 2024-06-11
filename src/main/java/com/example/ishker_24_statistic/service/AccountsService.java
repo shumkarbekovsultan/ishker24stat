@@ -13,6 +13,10 @@ public class AccountsService {
     @Autowired
     private AccountsRepository accountsRepository;
 
+    public List<Accounts> getAllAccounts() {
+        return accountsRepository.findAll();
+    }
+
 
 
     public Accounts getAccountById(Integer id) {
@@ -23,13 +27,15 @@ public class AccountsService {
         return accountsRepository.save(account);
     }
 
-    public List<Accounts> getAllAccounts() {
-        return accountsRepository.findAllWithDetails();
+    public Double sumAllBalances() {
+        return accountsRepository.sumAllBalances();
     }
 
     public List<Object[]> countAccountsByStatus() {
         return accountsRepository.countAccountsByStatus();
     }
+
+
 
     public List<Object> filterAccountsByStatus(String statusName) {
         return accountsRepository.filterAccountsByStatus(statusName);

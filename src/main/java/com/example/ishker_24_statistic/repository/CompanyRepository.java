@@ -16,7 +16,22 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 
     @Query("SELECT c FROM Company c WHERE c.statusRegistration.nameofstatus = :statusRegistrationName")
     List<Company> filterByStatusRegistrationName(@Param("statusRegistrationName") String statusRegistrationName);
+
+    @Query("SELECT c FROM Company c WHERE c.status.nameofstatus = :statusName AND c.statusRegistration.nameofstatus = :statusRegistrationName")
+    List<Company> filterByStatusAndStatusRegistration(
+            @Param("statusName") String statusName,
+            @Param("statusRegistrationName") String statusRegistrationName);
+
+    @Query("SELECT COUNT(c) FROM Company c WHERE c.statusRegistration.nameofstatus = :statusRegistrationName")
+    long countByStatusRegistrationName(@Param("statusRegistrationName") String statusRegistrationName);
+
+    @Query("SELECT COUNT(c) FROM Company c WHERE c.status.nameofstatus = :statusName")
+    long countByStatusName(@Param("statusName") String statusName);
+//
+//    @Query("SELECT c FROM Company c WHERE c.id = :id")
+//    List<Company> filterById(@Param("id") Integer id);
 }
+
 //    @Query("SELECT c FROM Company c WHERE c.bank.nameofbanks = :bankName")
 //    List<Company> filterByBank(@Param("bankName") String bankName);
 //

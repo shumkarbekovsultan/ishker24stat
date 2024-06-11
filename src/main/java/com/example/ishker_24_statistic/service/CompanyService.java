@@ -33,8 +33,22 @@ public class CompanyService {
     public List<Company> filterByStatusRegistrationName(String statusRegistrationName) {
         return companyRepository.filterByStatusRegistrationName(statusRegistrationName);
     }
+    public List<Company> filterByStatusAndStatusRegistration(String statusName, String statusRegistrationName) {
+        return companyRepository.filterByStatusAndStatusRegistration(statusName, statusRegistrationName);
+    }
 
-//    public Double sumAllAccountBalances() {
+    public long countByStatusRegistrationName(String statusRegistrationName) {
+        return companyRepository.countByStatusRegistrationName(statusRegistrationName);
+    }
+
+    public long countByStatusName(String statusName) {
+        return companyRepository.countByStatusName(statusName);
+    }
+//    public List<Company> filterById(Integer id) {
+//        return companyRepository.filterById(id);
+//    }
+//
+////    public Double sumAllAccountBalances() {
 //        return companyRepository.sumAllAccountBalances();
 //    }
 

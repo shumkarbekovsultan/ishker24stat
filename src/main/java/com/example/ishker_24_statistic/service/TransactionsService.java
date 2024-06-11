@@ -1,6 +1,6 @@
 package com.example.ishker_24_statistic.service;
 
-import com.example.ishker_24_statistic.models.ReportView;
+
 import com.example.ishker_24_statistic.models.Transactions;
 import com.example.ishker_24_statistic.repository.TransactionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -31,5 +31,6 @@ public interface AccountsRepository extends JpaRepository<Accounts, Integer> {
             "WHERE a.status.nameofstatus = :statusName ")
     List<Object> filterAccountsByStatus(@Param("statusName") String statusName);
 
-
+    @Query("SELECT SUM(a.balance) FROM Accounts a")
+    Double sumAllBalances();
 }

@@ -9,7 +9,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/accounts")
 public class AccountsController {
-
     @Autowired
     private AccountsService accountsService;
     @Autowired
@@ -39,4 +38,10 @@ public class AccountsController {
     public List<Object> filterAccountsByStatus(@RequestParam("statusName") String statusName) {
         return accountsRepository.filterAccountsByStatus(statusName);
     }
+
+    @GetMapping("/sumBalances")
+    public Double sumAllBalances() {
+        return accountsService.sumAllBalances();
+    }
+
 }
