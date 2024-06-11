@@ -30,6 +30,10 @@ public class CompanyController {
         return companyService.saveCompany(company);
     }
 
+    public CompanyController(CompanyService companyService) {
+        this.companyService = companyService;
+    }
+
     @GetMapping("/filterByStatus")
     public List<Company> filterCompaniesByStatus(@RequestParam("statusName") String statusName) {
         return companyService.filterByStatusName(statusName);
@@ -51,22 +55,13 @@ public class CompanyController {
         return filteredCompanies.size();
     }
 
-    @GetMapping("/filterByIsIPBeforeRegistration")
-    public List<Company> filterCompaniesByIsIPBeforeRegistration(@RequestParam("isIPBeforeRegistration") Boolean isIPBeforeRegistration) {
-        return companyService.filterByIsIPBeforeRegistration(isIPBeforeRegistration);
-    }
-
-    @GetMapping("/filterByIsIPBeforeRegistration/count")
-    public long countCompaniesByIsIPBeforeRegistration(@RequestParam("isIPBeforeRegistration") Boolean isIPBeforeRegistration) {
-        List<Company> filteredCompanies = companyService.filterByIsIPBeforeRegistration(isIPBeforeRegistration);
-        return filteredCompanies.size();
-    }
 
 
-    @GetMapping("/filterByAccountBalance/sum")
-    public Double sumAllAccountBalances() {
-        return companyService.sumAllAccountBalances();
-    }
+//
+//    @GetMapping("/filterByAccountBalance/sum")
+//    public Double sumAllAccountBalances() {
+//        return companyService.sumAllAccountBalances();
+//    }
 
 
 //    @GetMapping("/filterByBank")

@@ -28,15 +28,12 @@ public class Company {
     @JoinColumn(name = "status_registration", referencedColumnName = "id")
     private StatusRegistrationGns statusRegistration;
 
-    @ManyToOne
-    @JoinColumn(name = "account", referencedColumnName = "id")
-    private Accounts account;
+//    @ManyToOne
+//    @JoinColumn(name = "account", referencedColumnName = "id")
+//    private Accounts account;
 
     @Column
     private Integer kkm;
-
-    @Column
-    private Boolean isipbeforeregistration;
 
 //    @ManyToOne
 //    @JoinColumn(name = "account_balance", referencedColumnName = "id")
@@ -114,13 +111,7 @@ public class Company {
         this.statusRegistration = statusRegistration;
     }
 
-    public Accounts getAccount() {
-        return account;
-    }
 
-    public void setAccount(Accounts account) {
-        this.account = account;
-    }
 
     public Integer getKkm() {
         return kkm;
@@ -130,14 +121,7 @@ public class Company {
         this.kkm = kkm;
     }
 
-    public Boolean getIsipbeforeregistration() {
-        return isipbeforeregistration;
-    }
 
-    public void setIsipbeforeregistration(Boolean isipbeforeregistration) {
-        this.isipbeforeregistration = isipbeforeregistration;
-    }
-//
 //    public Accounts getAccountBalance() {
 //        return accountBalance;
 //    }

@@ -30,20 +30,13 @@ public class CompanyService {
         return companyRepository.filterByStatusName(statusName);
     }
 
-
-
-        public List<Company> filterByIsIPBeforeRegistration(Boolean isIPBeforeRegistration) {
-            return companyRepository.filterByIsIPBeforeRegistration(isIPBeforeRegistration);
-        }
-
-
     public List<Company> filterByStatusRegistrationName(String statusRegistrationName) {
         return companyRepository.filterByStatusRegistrationName(statusRegistrationName);
     }
 
-    public Double sumAllAccountBalances() {
-        return companyRepository.sumAllAccountBalances();
-    }
+//    public Double sumAllAccountBalances() {
+//        return companyRepository.sumAllAccountBalances();
+//    }
 
 
 
@@ -55,3 +48,4 @@ public class CompanyService {
 //        return companyRepository.filterByBranch(branchName);
 //    }
 }
+

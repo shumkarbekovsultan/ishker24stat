@@ -32,7 +32,20 @@ public class Accounts {
     @JoinColumn(name = "filialid", referencedColumnName = "id")
     private Filials filial;
 
+    @Column
+    private Long innCompany;
+
     // Getters and Setters
+
+    public Long getInnCompany() {
+        return innCompany;
+    }
+
+    public void setInnCompany(Long innCompany) {
+        this.innCompany = innCompany;
+    }
+
+
 
     public Integer getId() {
         return id;

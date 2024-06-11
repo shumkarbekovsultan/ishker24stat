@@ -1,57 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Report View</title>
-    <script>
-        async function fetchReport() {
-            const bankFilter = document.getElementById("bankFilter").value;
-            const filialFilter = document.getElementById("filialFilter").value;
-            const response = await fetch(`/report/view?bankFilter=${bankFilter}&filialFilter=${filialFilter}`);
-            const data = await response.json();
-
-            const tableBody = document.getElementById("reportTableBody");
-            tableBody.innerHTML = "";
-
-            data.forEach(report => {
-                const row = document.createElement("tr");
-
-                Object.values(report).forEach(value => {
-                    const cell = document.createElement("td");
-                    cell.textContent = value;
-                    row.appendChild(cell);
-                });
-
-                tableBody.appendChild(row);
-            });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Companies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
         }
-    </script>
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        button {
+            margin-right: 10px;
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: #fff;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<h1>Report View</h1>
-<label for="bankFilter">Bank Filter: </label>
-<input type="text" id="bankFilter" name="bankFilter">
-<label for="filialFilter">Filial Filter: </label>
-<input type="text" id="filialFilter" name="filialFilter">
-<button onclick="fetchReport()">Fetch Report</button>
+<h1>Filter Companies</h1>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>Банк</th>
-        <th>Филиал</th>
-        <th>Приход</th>
-        <th>Расход</th>
-        <th>Сумма оборота</th>
-        <th>Все ИП</th>
-        <th>Успешно</th>
-        <th>Отклонено</th>
-        <th>В обработке</th>
-        <th>ГНС</th>
-    </tr>
-    </thead>
-    <tbody id="reportTableBody">
-    <!-- Report data will be inserted here -->
-    </tbody>
-</table>
+<!-- Форма для фильтрации -->
+<form id="filterForm">
+    <input type="text" id="statusName" name="statusName" placeholder="Enter Status">
+    <input type="submit" value="Filter">
+</form>
+
+<!-- Кнопки для фильтрации -->
+<div>
+    <button onclick="filterCompanies('Active')">Active</button>
+    <button onclick="filterCompanies('Inactive')">Inactive</button>
+    <button onclick="filterCompanies('Pending')">Pending</button>
+    <button onclick="filterCompanies('All')">Show All</button>
+</div>
+
+<ul id="companyList">
+    <!-- Здесь будет отображаться список компаний -->
+</ul>
+
+<script>
+    $(document).ready(function() {
+        // При загрузке страницы отображаем все компании
+        loadAllCompanies();
+    });
+
+    $('#filterForm').submit(function(event) {
+        event.preventDefault();
+        var statusName = $('#statusName').val();
+        filterCompanies(statusName);
+    });
+
+    function loadAllCompanies() {
+        $.ajax({
+            type: 'GET',
+            url: '/companies',
+            success: function(data) {
+                updateCompanyList(data);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
+    function filterCompanies(statusName) {
+        if (statusName === 'All') {
+            loadAllCompanies();
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: '/companies/filterByStatus',
+                data: { statusName: statusName },
+                success: function(data) {
+                    updateCompanyList(data);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+    }
+
+    function updateCompanyList(data) {
+        $('#companyList').empty();
+        $.each(data, function(index, company) {
+            var status = company.status && company.status.name ? company.status.name : 'N/A';
+            var statusRegistration = company.statusRegistration && company.statusRegistration.name ? company.statusRegistration.name : 'N/A';
+            $('#companyList').append('<li>ID: ' + company.id + ', INN: ' + company.inn + ', Status: ' + status + ', Status Registration: ' + statusRegistration + '</li>');
+        });
+    }
+</script>
 </body>
 </html>
