@@ -24,4 +24,5 @@ public class TransactionTypeService {
     public TransactionType saveTransactionType(TransactionType transactionType) {
         return transactionTypeRepository.save(transactionType);
     }
+
 }

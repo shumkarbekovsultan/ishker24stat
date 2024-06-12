@@ -3,6 +3,8 @@ import com.example.ishker_24_statistic.models.Accounts;
 import com.example.ishker_24_statistic.repository.AccountsRepository;
 import com.example.ishker_24_statistic.service.AccountsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -20,8 +22,12 @@ public class AccountsController {
     }
 
     @GetMapping("/{id}")
-    public Accounts getAccountById(@PathVariable Integer id) {
-        return accountsService.getAccountById(id);
+    public ResponseEntity<Accounts> getAccountById(@PathVariable Integer id) {
+        Accounts account = accountsService.getAccountById(id);
+        if (account == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(account, HttpStatus.OK);
     }
 
     @PostMapping

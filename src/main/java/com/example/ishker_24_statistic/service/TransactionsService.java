@@ -41,6 +41,17 @@ public class TransactionsService {
     public List<Transactions> filterByDateTimeRange(LocalDateTime startDate, LocalDateTime endDate) {
         return transactionsRepository.filterByDateTimeRange(startDate, endDate);
     }
+    public int countTransactionsByTypeAndStatus(Long typeId) {
+        return transactionsRepository.countTransactionsByTypeAndStatus(typeId);
+    }
+
+    public int countTransactionsByStatus(Long statusId) {
+        return transactionsRepository.countTransactionsByStatus(statusId);
+    }
 
 
+
+    public List<Transactions> filterByStartDate(LocalDateTime startDate) {
+        return transactionsRepository.filterByStartDate(startDate);
+    }
 }

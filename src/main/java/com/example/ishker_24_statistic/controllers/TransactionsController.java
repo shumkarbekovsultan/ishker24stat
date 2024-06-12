@@ -50,4 +50,21 @@ public class TransactionsController {
         return transactionsService.filterByDateTimeRange(startDate, endDate);
     }
 
+    @GetMapping("/countByTransactionTypeAndStatus/{typeId}")
+    public int countTransactionsByTypeAndStatus(@PathVariable Long typeId) {
+        return transactionsService.countTransactionsByTypeAndStatus(typeId);
+    }
+
+    @GetMapping("/countByTransactionStatus/{statusId}")
+    public int countTransactionsByStatus(@PathVariable Long statusId) {
+        return transactionsService.countTransactionsByStatus(statusId);
+    }
+
+
+    @GetMapping("/filterByStartDate")
+    public List<Transactions> filterByStartDate(@RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate) {
+        return transactionsService.filterByStartDate(startDate);
+    }
+
+
 }

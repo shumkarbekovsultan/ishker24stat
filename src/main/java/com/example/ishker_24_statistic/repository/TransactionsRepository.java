@@ -23,5 +23,14 @@ public interface TransactionsRepository extends JpaRepository<Transactions, Inte
     @Query("SELECT t FROM Transactions t WHERE t.transactiondate >= :startDate AND t.transactiondate <= :endDate")
     List<Transactions> filterByDateTimeRange(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
+    @Query("SELECT COUNT(t) FROM Transactions t WHERE t.transactionType.id = :typeId AND t.status.id = 1")
+    int countTransactionsByTypeAndStatus(@Param("typeId") Long typeId);
+
+    @Query("SELECT COUNT(t) FROM Transactions t WHERE t.status.id = :statusId")
+    int countTransactionsByStatus(@Param("statusId") Long statusId);
+
+    @Query("SELECT t FROM Transactions t WHERE t.transactiondate >= :startDate AND t.transactiondate <= CURRENT_TIMESTAMP")
+    List<Transactions> filterByStartDate(@Param("startDate") LocalDateTime startDate);
+
 
 }

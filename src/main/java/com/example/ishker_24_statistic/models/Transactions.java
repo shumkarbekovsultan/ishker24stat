@@ -27,6 +27,7 @@ public class Transactions {
     @ManyToOne
     @JoinColumn(name = "accountid_to", referencedColumnName = "id")
     private Accounts accountTo;
+
     @ManyToOne
     @JoinColumn(name = "transactiontype", referencedColumnName = "id")
     private TransactionType transactionType;
@@ -36,7 +37,6 @@ public class Transactions {
     private StatusOfTransactions status;
 
     private double amount;
-
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime transactiondate;
@@ -94,7 +94,7 @@ public class Transactions {
         return transactiondate;
     }
 
-    public void setTransactionDate(DateTimeFormat LocalDateTime) {
+    public void setTransactionDate(LocalDateTime transactiondate) {
         this.transactiondate = transactiondate;
     }
 }
