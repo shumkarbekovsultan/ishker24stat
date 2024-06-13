@@ -1,6 +1,7 @@
-//package com.example.ishker_24_statistic;
+//package com.example.ishker_24_statistic.config;
 //
 //import com.example.ishker_24_statistic.service.UserService;
+//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.http.HttpStatus;
@@ -18,8 +19,10 @@
 //import org.springframework.security.web.SecurityFilterChain;
 //import org.springframework.security.web.access.AccessDeniedHandler;
 //import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+//import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 //import org.springframework.web.cors.CorsConfiguration;
-//
+//import com.example.ishker_24_statistic.config.TokenFilter;
+//import java.io.IOException;
 //
 //@Configuration
 //@EnableWebSecurity
@@ -27,6 +30,11 @@
 //    private UserService userService;
 //
 //    public  SecurityConfigurator(){}
+//
+//    @Autowired
+//    public void setTokenFilter(com.example.ishker_24_statistic.TolenFilter tokenFilter) {
+//        this.tokenFilter = tokenFilter;
+//    }
 //
 //    @Bean
 //    public PasswordEncoder passwordEncoder(){
@@ -45,7 +53,7 @@
 //    }
 //
 //    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//    public SecurityFilterChain filterChain(HttpSecurity http, TokenFilter tokenFilter) throws Exception {
 //        http
 //                .csrf(AbstractHttpConfigurer::disable)
 //                .cors(httpSecurityCorsConfigurer ->
@@ -62,7 +70,8 @@
 //                                .requestMatchers("/auth/**").permitAll()
 //                                .requestMatchers("/secured/user").fullyAuthenticated()
 //                                .anyRequest().permitAll()
-//                );
+//                )
+//                .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
 //    return http.build();
 //    }
 //}

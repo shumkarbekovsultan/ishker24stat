@@ -4,12 +4,12 @@ package com.example.ishker_24_statistic.service;
 import com.example.ishker_24_statistic.models.Transactions;
 import com.example.ishker_24_statistic.repository.TransactionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransactionsService {
@@ -38,10 +38,7 @@ public class TransactionsService {
     }
 
 
-    public List<Transactions> filterByDateTimeRange(LocalDateTime startDate, LocalDateTime endDate) {
-        return transactionsRepository.filterByDateTimeRange(startDate, endDate);
-    }
-    public int countTransactionsByTypeAndStatus(Long typeId) {
+     public int countTransactionsByTypeAndStatus(Long typeId) {
         return transactionsRepository.countTransactionsByTypeAndStatus(typeId);
     }
 
@@ -49,9 +46,11 @@ public class TransactionsService {
         return transactionsRepository.countTransactionsByStatus(statusId);
     }
 
-
-
-    public List<Transactions> filterByStartDate(LocalDateTime startDate) {
-        return transactionsRepository.filterByStartDate(startDate);
+    public List<Transactions> filterByDateTimeRange(LocalDate startDate, LocalDate nextDayEndDate) {
+        // Фильтруем транзакции по диапазону дат от startDate (включительно) до nextDayEndDate (исключительно)
+        return transactionsRepository.filterByDateTimeRange(startDate.atStartOfDay(), nextDayEndDate.atStartOfDay());
     }
+
+
+
 }

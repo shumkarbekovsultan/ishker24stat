@@ -1,5 +1,6 @@
-//package com.example.ishker_24_statistic;
+//package com.example.ishker_24_statistic.config;
 //
+//import com.example.ishker_24_statistic.UserDetailsImpl;
 //import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 //import org.springframework.security.core.Authentication;

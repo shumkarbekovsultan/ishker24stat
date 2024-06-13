@@ -33,11 +33,27 @@
 //
 //    @Override
 //    public String getPassword() {
-//        return "";
+//        return pass;
 //    }
 //
 //    @Override
 //    public String getUsername() {
-//        return "";
+//        return username;
 //    }
+//
+//    @Override
+//    public boolean isAccountNotExpired(){
+//        return  true;
+//    }
+//
+//    @Override
+//    public boolean isAccountNotLocked(){
+//        return  true;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired(){
+//        return  true;
+//    }
+//
 //}

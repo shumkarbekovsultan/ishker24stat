@@ -1,4 +1,4 @@
-//package com.example.ishker_24_statistic;
+//package com.example.ishker_24_statistic.config;
 //
 //import io.jsonwebtoken.ExpiredJwtException;
 //import jakarta.servlet.FilterChain;
@@ -39,14 +39,20 @@
 //                }
 //                if (username != null && SecurityContextHolder.getContext().getAuthentication() == null){
 //                    userDetails = userDetailsService.loadUserByUsername(username);
+//                    auth = new UsernamePasswordAuthenticationToken(
+//                            userDetails,
+//                            null );
+//                    SecurityContextHolder.getContext().setAuthentication(auth);
+//
 //
 //                }
 //            }
 //            //To do
 //
 //        } catch (Exception e) {
-//
+//            // To do
 //
 //        }
+//        filterChain.doFilter(request, response);
 //    }
 //}
