@@ -29,8 +29,6 @@ public interface TransactionsRepository extends JpaRepository<Transactions, Inte
 
     @Query("SELECT t FROM Transactions t WHERE t.transactiondate >= :startDate AND t.transactiondate < :endDate")
     List<Transactions> filterByDateTimeRange(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
-//    @Query("SELECT t FROM Transactions t WHERE t.transactiondate >= :startDate AND (:endDate IS NULL OR t.transactiondate <= :endDate)")
-//    List<Transactions> filterByStartDate(@Param("startDate") java.sql.Timestamp startDate, @Param("endDate") java.sql.Timestamp endDate);
 
 
 
